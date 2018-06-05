@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1 style='text-align: center;'>Listado de {{ titulo }}</h1>
+
+<hr>
+{% if titulo|lower == 'peliculas' %}
+<a href="{% url 'crear_pelicula' %}"><input type="button"  value="&#43"></a>
+{% elif titulo == 'generos' %}
+<a href="{% url 'crear_genero' %}"><input type="button"  value="&#43"></a>
+{% elif titulo|lower == 'prestamos' %}
+<a href="{% url 'crear_prestamo' %}"><input type="button"  value="&#43"></a>
+{% elif titulo|lower == 'clientes' %}
+<a href="{% url 'crear_cliente' %}"><input type="button"  value="&#43"></a>
+{% endif %}
+  <table style='text-align: center;'>
+    <thead>
+      <tr> 
+        <th> {{ titulo|capfirst }} </th> 
+        <th> Acciones </th> 
+      </tr>
+    </thead>
+    <tbody>
+      {% for o in object_list  %}
+      <tr>
+        <th>{{ o }}</th>
+        <th>
+          {% if titulo|lower == 'peliculas' %}
+          <a href="{% url 'modificar_pelicula' o.pk  %}"><input type="button"  value="&#9998"></a>
+          <a href="{% url 'eliminar_pelicula' o.pk %}"><input type="button"  value="&#10005"></a>
+          {% elif titulo == 'generos' %}
+          <a href="{% url 'modificar_genero' o.pk  %}"><input type="button"  value="&#9998"></a>
+          <a href="{% url 'eliminar_genero' o.pk %}"><input type="button"  value="&#10005"></a>
+          {% elif titulo|lower == 'prestamos' %}
+          <a href="{% url 'modificar_prestamo' o.pk  %}"><input type="button"  value="&#9998"></a>
+          <a href="{% url 'eliminar_prestamo' o.pk %}"><input type="button"  value="&#10005"></a>
+          {% elif titulo|lower == 'clientes' %}
+          <a href="{% url 'modificar_cliente' o.pk  %}"><input type="button"  value="&#9998"></a>
+          <a href="{% url 'eliminar_cliente' o.pk %}"><input type="button"  value="&#10005"></a>
+          {% endif %}
+        <th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+<hr>
+{% endblock body %}

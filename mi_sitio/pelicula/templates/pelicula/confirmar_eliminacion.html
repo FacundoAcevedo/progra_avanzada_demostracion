@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body %}
+<h1 style='text-align: center;' >Eliminar {{titulo}}</h1>
+
+<hr>
+<form action="" method="post">{% csrf_token %}
+  <table style='text-align: center;'>
+    <tr>
+      <th>
+        <h4>{{ objeto_a_borrar }}</h4>
+      </th>
+      <th>
+        <input type="submit" value="Borrar" />
+        <a href="{{ view.get_success_url }}"><input type="button" name="Cancel" value="Cancel"></a>
+      </th>
+      <tr>
+  </table>
+</form>
+<hr>
+{% endblock body %}

@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+
+{% block body %}
+<h1 style='text-align: center;'>Informe de {{ titulo }}s</h1>
+
+<hr>
+  <table style='text-align: center;'>
+    <thead>
+      <tr> 
+          {% if titulo|lower == 'pelicula' %}
+            <th> Nombre</th> 
+            <th> Estreno </th> 
+            <th> Genero </th> 
+          {% elif titulo|lower == 'genero' %}
+            <th> Codigo </th> 
+            <th> Descripcion </th> 
+          {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for o in object_list  %}
+      <tr>
+          {% if titulo|lower == 'pelicula' %}
+            <th>{{ o.nombre }}</th>
+            <th>{{ o.estreno }}</th>
+            <th>{{ o.genero.descripcion }}</th>
+          {% elif titulo == 'genero' %}
+            <th>{{ o.codigo }}</th>
+            <th>{{ o.descripcion }}</th>
+          {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+<hr>
+{% endblock body %}

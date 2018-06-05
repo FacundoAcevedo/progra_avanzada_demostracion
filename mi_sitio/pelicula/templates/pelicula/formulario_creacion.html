@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+<h1 style='text-align: center;'>Crear {{titulo}}</h1>
+
+<hr>
+<div style='text-align: center;'>
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Guardar" />
+    <a href="{{ success_url }}"><input type="button" name="Cancel" value="Cancel"></a>
+</form>
+</div>
+<hr>
+
+{% endblock body %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>
+  Modificar {{titulo}}
+</h1>
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Guardar" />
+    <a href="{{ success_url }}"><input type="button" name="Cancel" value="Cancel"></a>
+</form>
+
+{% endblock body %}
