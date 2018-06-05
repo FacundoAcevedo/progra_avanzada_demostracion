@@ -82,7 +82,7 @@ DATABASES = {
 }
 
 FIXTURE_DIRS = (
-   'pelicula/fixtures',
+    'pelicula/fixtures',
 )
 
 # Password validation
