@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from faker import Faker
+
 
 from . import models
 from . import views
@@ -18,12 +20,10 @@ class Test(TestCase):
 # Creamos algunos generos
 
     def test_crear_generos(self):
-        resp = self.client.post("/genero/crear/", {"codigo":1, "descripcion":
-                                                   "anime"})
-        self.assertEqual(resp.status_code, 302)
-        self.assertRedirects(resp, "/genero/")
-
-
-
-
-
+        fake = Faker()
+        max = 10
+        for index in range(max):
+            resp = self.client.post("/genero/crear/", {"codigo":index, "descripcion":
+                                                       fake.name()})
+            self.assertEqual(resp.status_code, 302)
+            self.assertRedirects(resp, "/genero/")
