@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
+from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
@@ -39,6 +40,10 @@ class CrearGenero(CreateView):
         context["success_url"] = reverse_lazy("lista_genero")
 
         return context
+
+    #Aca no hay nada que ver, siga circulando
+    def form_valid(self, form):
+        return  redirect("/")
 
 
 class ModificarGenero(UpdateView):
