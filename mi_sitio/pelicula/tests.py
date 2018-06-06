@@ -9,6 +9,7 @@ from . import views
 
 # Create your tests here.
 
+
 class Test(TestCase):
     def test_IndexView(self):
         url = reverse("Index")
@@ -19,11 +20,21 @@ class Test(TestCase):
 
 # Creamos algunos generos
 
+
     def test_crear_generos(self):
         fake = Faker()
         max = 10
         for index in range(max):
-            resp = self.client.post("/genero/crear/", {"codigo":index, "descripcion":
+            resp = self.client.post("/genero/crear/", {"codigo": index, "descripcion":
                                                        fake.name()})
             self.assertEqual(resp.status_code, 302)
             self.assertRedirects(resp, "/genero/")
+
+    def test_crear_cliente(self):
+        fake = Faker()
+        max = 10
+        for index in range(max):
+            resp = self.client.post("/cliente/crear/", {"nombre": fake.name(),
+                                                        "telefono": 123123,
+                                                        "email": "q@q.com"})
+            self.assertEqual(resp.status_code, 302)
